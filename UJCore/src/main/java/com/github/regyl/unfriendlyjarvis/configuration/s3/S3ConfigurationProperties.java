@@ -13,5 +13,7 @@ public class S3ConfigurationProperties {
 
     private String secretKey;
 
+    private String region = "us-east-1";
+
     private Integer presignedUriTtlHours;
 }

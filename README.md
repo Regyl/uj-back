@@ -1,14 +1,13 @@
 # Introduction
 Used ports:
 - 9090 for gRPC server
-- 9001 for MinIO console
-- 9000 for MinIO API
+- 9000 for Garage S3 API
+- 3903 for Garage admin API
 
 
 # What and when to use
 - Protocol Buffers fox advanced serialization/deserialization speed, solve problem with Java native mechanism
 - Redis, as says Chat GPT, for caching (I think in sessions, but not sure) (update 2: Chat GPT suggest to use it in real-time notification system)
-- Neo4j for recommendation system
 - Spring Cloud just for fun, it's my 4 time to use it
 - DestructionAwareBeanPostProcessor
 - Java RMI to remote administration

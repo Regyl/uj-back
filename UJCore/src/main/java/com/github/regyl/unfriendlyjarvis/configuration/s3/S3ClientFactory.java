@@ -12,6 +12,7 @@ public class S3ClientFactory {
         return MinioClient.builder()
                 .endpoint(configProps.getEndpoint())
                 .credentials(configProps.getAccessKey(), configProps.getSecretKey())
+                .region(configProps.getRegion())
                 .build();
     }
 }

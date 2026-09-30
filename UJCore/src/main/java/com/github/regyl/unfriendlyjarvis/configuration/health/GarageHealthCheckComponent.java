@@ -1,6 +1,5 @@
 package com.github.regyl.unfriendlyjarvis.configuration.health;
 
-import io.minio.BucketExistsArgs;
 import io.minio.MinioClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.actuate.health.Health;
@@ -10,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component("minio")
+@Component("garage")
 @RequiredArgsConstructor
-public class MinIOHealthCheckComponent implements HealthIndicator {
+public class GarageHealthCheckComponent implements HealthIndicator {
 
     private final MinioClient minioClient;
 
@@ -28,7 +27,7 @@ public class MinIOHealthCheckComponent implements HealthIndicator {
 
     private Optional<Exception> ping() {
         try {
-            minioClient.bucketExists(BucketExistsArgs.builder().bucket("asiatrip").build());
+            minioClient.listBuckets();
             return Optional.empty();
         } catch (Exception e) {
             return Optional.of(e);

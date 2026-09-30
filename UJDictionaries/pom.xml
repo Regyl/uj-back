@@ -8,23 +8,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.7</version>
+        <version>3.5.16</version>
         <relativePath/>
     </parent>
-
     <groupId>com.github.regyl.unfriendlyjarvis</groupId>
     <artifactId>uj-dictionaries</artifactId>
     <version>0.0.1</version>
-    <name>UJDictionaries</name>
-    <description>Unfriendly Jarvis Dictionaries Service</description>
 
     <properties>
-        <lombok.version>1.18.42</lombok.version>
-        <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <postgresql.version>42.7.7</postgresql.version>
+        <spring-cloud.version>2025.0.3</spring-cloud.version>
 
         <!--plugins-->
-        <jib.version>3.5.1</jib.version>
+        <jib.version>3.5.2</jib.version>
 
         <java.version>25</java.version>
         <maven.compiler.source>25</maven.compiler.source>
@@ -63,18 +58,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- Spring Cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Database -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -82,14 +79,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- Annotation Processors -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
 
@@ -113,7 +102,6 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

@@ -3,7 +3,7 @@ package com.github.regyl.unfriendlyjarvis.service.impl.s3;
 import com.github.regyl.unfriendlyjarvis.configuration.s3.S3ConfigurationProperties;
 import com.github.regyl.unfriendlyjarvis.service.s3.S3Service;
 import io.minio.*;
-import io.minio.http.Method;
+import io.minio.Http.Method;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public class S3ServiceImpl implements S3Service {
                     PutObjectArgs.builder()
                             .bucket(bucketName)
                             .object(objectName)
-                            .stream(file.getInputStream(), file.getSize(), -1)
+                            .stream(file.getInputStream(), file.getSize(), -1L)
                             .contentType(file.getContentType())
                             .build()
             );
