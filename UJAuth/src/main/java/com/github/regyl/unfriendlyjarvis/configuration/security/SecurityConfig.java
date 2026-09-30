@@ -1,6 +1,7 @@
 package com.github.regyl.unfriendlyjarvis.configuration.security;
 
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NonNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -50,7 +51,7 @@ public class SecurityConfig {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
+            public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("*");
             }
         };
@@ -61,10 +62,9 @@ public class SecurityConfig {
      *
      * @param http http security.
      * @return security filter chain.
-     * @throws Exception exception.
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) {
         http
                 .cors(CorsConfigurer::disable)
                 .csrf(CsrfConfigurer::disable)

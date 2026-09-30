@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @see {@link com.github.regyl.unfriendlyjarvis.controller.dto.yandexmusic.TrackDto}.
  * Should be equal.
  */
 @Data

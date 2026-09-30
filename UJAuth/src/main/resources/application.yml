@@ -1,0 +1,29 @@
+server:
+    port: 8760
+    servlet:
+        context-path: /auth
+
+spring:
+    cloud:
+        config:
+            enabled: false
+    datasource:
+        url: jdbc:postgresql://localhost:5432/uj
+        username: idk_user
+        password: SomeUselessPassword02
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+    application:
+      jwt:
+        secret: change-me
+        access-token-expiration-ms: 900000
+        refresh-token-expiration-ms: 604800000
+        issuer: unfriendly-jarvis
+      oauth:
+          providers:
+            github:
+              client-id: change-me
+              client-secret: change-me
+              redirect-uri: http://localhost:3000/oauth/callback

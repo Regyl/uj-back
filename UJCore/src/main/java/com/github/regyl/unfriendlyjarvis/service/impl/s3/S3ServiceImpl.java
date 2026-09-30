@@ -2,8 +2,14 @@ package com.github.regyl.unfriendlyjarvis.service.impl.s3;
 
 import com.github.regyl.unfriendlyjarvis.configuration.s3.S3ConfigurationProperties;
 import com.github.regyl.unfriendlyjarvis.service.s3.S3Service;
-import io.minio.*;
+import io.minio.BucketExistsArgs;
+import io.minio.GetObjectArgs;
+import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.Http.Method;
+import io.minio.MakeBucketArgs;
+import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

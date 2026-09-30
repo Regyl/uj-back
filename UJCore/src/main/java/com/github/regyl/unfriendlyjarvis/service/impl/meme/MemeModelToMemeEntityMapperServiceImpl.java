@@ -7,6 +7,7 @@ import com.github.regyl.unfriendlyjarvis.service.SecurityContextService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.time.OffsetDateTime;
 import java.util.function.Function;
@@ -40,7 +41,7 @@ public class MemeModelToMemeEntityMapperServiceImpl implements Function<MemeMode
      * @return Source enum
      */
     private Source parseSource(String source) {
-        if (source == null || source.isBlank()) {
+        if (!StringUtils.hasLength(source)) {
             return Source.OTHER;
         }
         try {

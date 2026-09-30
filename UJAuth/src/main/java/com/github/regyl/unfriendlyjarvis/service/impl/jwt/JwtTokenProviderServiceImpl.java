@@ -4,13 +4,18 @@ import com.github.regyl.unfriendlyjarvis.configuration.security.JwtProperties;
 import com.github.regyl.unfriendlyjarvis.entity.UserEntity;
 import com.github.regyl.unfriendlyjarvis.enumeration.TokenType;
 import com.github.regyl.unfriendlyjarvis.service.jwt.JwtTokenProviderService;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -64,9 +69,9 @@ public class JwtTokenProviderServiceImpl implements JwtTokenProviderService {
      * @return JWT token
      */
     private String generateToken(UserEntity user, TokenType tokenType) {
-        Date now = new Date();
-        Date expiration = new Date(now.getTime() + 
-                (tokenType == TokenType.ACCESS 
+        Date now = new Date(); //FIXME
+        Date expiration = new Date(now.getTime()
+                + (tokenType == TokenType.ACCESS
                         ? jwtProperties.getAccessTokenExpirationMs() 
                         : jwtProperties.getRefreshTokenExpirationMs()));
 
@@ -158,7 +163,7 @@ public class JwtTokenProviderServiceImpl implements JwtTokenProviderService {
     public List<String> getAuthoritiesFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
         String authorities = claims.get(AUTHORITIES_KEY, String.class);
-        if (authorities == null || authorities.isEmpty()) {
+        if (!StringUtils.hasLength(authorities)) {
             return Collections.emptyList();
         }
         return Arrays.asList(authorities.split(","));

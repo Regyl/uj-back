@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Dev-UJCoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+  <configuration default="false" name="dev-core" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="dev" />
     <module name="uj-core" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.regyl.unfriendlyjarvis.UnfriendlyJarvisCoreApplication" />

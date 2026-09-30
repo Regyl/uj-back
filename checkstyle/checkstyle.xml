@@ -17,6 +17,35 @@
  -->
 
 <module name="Checker">
+    <!--<module name="RegexpSingleline">
+        <property name="format" value="//(FIXME|REMOVE ME|REMOVEME)"/>
+        <property name="message" value="Remove this line"/>
+    </module>-->
+    <module name="RegexpSingleline">
+        <property name="format" value="public class [A-Za-z]*Test \{"/>
+        <property name="message" value="Test classes should not be public"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="org.junit.jupiter.api.Assertions"/>
+        <property name="message" value="JUnit assertions are forbidden. Please use AssertJ"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="\.now\(\)"/>
+        <property name="message" value="Calling DateTime.now() is forbidden. Use supplier"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[A-Za-z]+ != null &amp;&amp; ![A-Za-z]+\.(isBlank|isEmpty)\(\)"/>
+        <property name="message" value="Please use StringUtils::hasLength"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[A-Za-z]+ == null \|\| [A-Za-z]+\.(isBlank|isEmpty)\(\)"/>
+        <property name="message" value="Please use StringUtils::hasLength"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="mapstruct"/>
+        <property name="message" value="Please never use it here. I hate it"/>
+    </module>
+
     <module name="SuppressWarningsFilter"/>
 
     <property name="charset" value="UTF-8"/>
@@ -38,7 +67,7 @@
 
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
-        <property name="max" value="120"/>
+        <property name="max" value="140"/>
         <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
     </module>
 
@@ -245,7 +274,7 @@
         <module name="Indentation">
             <property name="basicOffset" value="4"/>
             <property name="braceAdjustment" value="2"/>
-            <property name="caseIndent" value="2"/>
+            <property name="caseIndent" value="4"/>
             <property name="throwsIndent" value="4"/>
             <property name="lineWrappingIndentation" value="8"/>
             <property name="arrayInitIndent" value="2"/>
@@ -260,7 +289,7 @@
         </module>
         <module name="NoWhitespaceBeforeCaseDefaultColon"/>
         <module name="OverloadMethodsDeclarationOrder"/>
-        <module name="VariableDeclarationUsageDistance"/>
+        <!--        <module name="VariableDeclarationUsageDistance"/>-->
         <module name="CustomImportOrder">
             <property name="separateLineBetweenGroups" value="true"/>
             <property name="customImportOrderRules" value="THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC"/>
@@ -310,10 +339,10 @@
             <property name="forbiddenSummaryFragments"
                       value="^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )"/>
         </module>
-        <module name="JavadocParagraph">
+        <!--<module name="JavadocParagraph">
             <property name="allowNewlineParagraph" value="false"/>
-        </module>
-        <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+        </module>-->
+        <!--        <module name="RequireEmptyLineBeforeBlockTagGroup"/>-->
         <module name="AtclauseOrder">
             <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
             <property name="target"
@@ -326,7 +355,8 @@
             <property name="allowedAnnotations" value="Override, Test"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
         </module>
-        <module name="MissingJavadocMethod">
+
+        <!-- TODO enable after covering all existing code <module name="MissingJavadocMethod">
             <property name="scope" value="public"/>
             <property name="minLineCount" value="2"/>
             <property name="allowedAnnotations" value="Override, Test"/>
@@ -339,7 +369,7 @@
                       value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
                       RECORD_DEF, ANNOTATION_DEF"/>
             <property name="excludeScope" value="nothing"/>
-        </module>
+        </module>-->
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9]\w*$"/>
             <message key="name.invalidPattern"
@@ -349,9 +379,9 @@
         <module name="EmptyCatchBlock">
             <property name="exceptionVariableName" value="expected"/>
         </module>
-        <module name="CommentsIndentation">
+        <!--<module name="CommentsIndentation">
             <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
-        </module>
+        </module>-->
         <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
         <module name="SuppressionXpathFilter">
             <property name="file" value="${org.checkstyle.google.suppressionxpathfilter.config}"

@@ -29,7 +29,7 @@ public class TodoTaskDtoToEntityMapperServiceImpl implements Function<TodoTaskDt
                 .accountId(securityContextService.getUserId())
                 .title(dto.getTitle())
                 .description(dto.getDescription())
-                .completed(dto.getCompleted() != null ? dto.getCompleted() : false)
+                .completed(dto.getCompleted() != null && dto.getCompleted())
                 .priority(dto.getPriority() != null ? dto.getPriority() : Priority.MEDIUM)
                 .source(Source.OTHER)
                 .created(dateTimeSupplier.get())

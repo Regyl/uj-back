@@ -32,9 +32,7 @@ public class OAuthGitHubBearerAccessTokenAcquirer implements OAuthAccessTokenAcq
         AccessTokenResponseDto responseDto = gitHubOAuthFeignClient.getAccessToken(requestDto);
         
         if (!DEFAULT_TOKEN_TYPE.equalsIgnoreCase(responseDto.getTokenType())) {
-            String exMessage = String.format("OAuth through service %s currently unavailable",
-                    initializationDto.getOAuthProviderType().name());
-            throw new JarvisException(exMessage);
+            throw new JarvisException(responseDto.getErrorDescription());
         }
 
         return String.join(" ", DEFAULT_TOKEN_TYPE, responseDto.getAccessToken());

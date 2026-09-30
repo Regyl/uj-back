@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "application.jwt")
+@ConfigurationProperties(prefix = "spring.application.jwt")
 public class JwtProperties {
 
     /**

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Dev-UJAuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+  <configuration default="false" name="dev-auth" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="dev" />
     <module name="uj-auth" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.regyl.unfriendlyjarvis.UnfriendlyJarvisAuthApplication" />

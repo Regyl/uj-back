@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * JWT configuration properties.
  */
 @Data
-@ConfigurationProperties(prefix = "application.jwt")
+@ConfigurationProperties(prefix = "spring.application.jwt")
 public class JwtProperties {
 
     /**

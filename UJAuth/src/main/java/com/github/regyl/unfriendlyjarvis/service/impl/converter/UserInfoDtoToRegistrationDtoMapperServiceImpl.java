@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 /**
  * Converter for GitHub user info to registration DTO.

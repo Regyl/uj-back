@@ -1,11 +1,16 @@
 package com.github.regyl.unfriendlyjarvis.service.impl.grpc;
 
-import com.github.regyl.unfriendlyjarvis.grpc.*;
+import com.github.regyl.unfriendlyjarvis.grpc.GetAllSecretDataRequest;
+import com.github.regyl.unfriendlyjarvis.grpc.GetAllSecretDataResponse;
+import com.github.regyl.unfriendlyjarvis.grpc.GetSecretDataRequest;
+import com.github.regyl.unfriendlyjarvis.grpc.GetSecretDataResponse;
+import com.github.regyl.unfriendlyjarvis.grpc.SecretDataEntry;
+import com.github.regyl.unfriendlyjarvis.grpc.UserSecretDataServiceGrpc;
 import com.github.regyl.unfriendlyjarvis.service.usersecretdata.UserSecretDataService;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -18,10 +23,10 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserSecretDataServiceImpl implements UserSecretDataService {
-    
-    @GrpcClient("auth-service")
-    private UserSecretDataServiceGrpc.UserSecretDataServiceBlockingStub userSecretDataServiceStub;
+
+    private final UserSecretDataServiceGrpc.UserSecretDataServiceBlockingStub userSecretDataServiceStub;
     
     @Override
     public Optional<String> getSecretData(Long userId, String key) {
@@ -64,7 +69,7 @@ public class UserSecretDataServiceImpl implements UserSecretDataService {
                     .setUserId(userId)
                     .build();
             
-            GetAllSecretDataResponse response = 
+            GetAllSecretDataResponse response =
                     userSecretDataServiceStub.getAllSecretData(request);
             
             if (response.getFound()) {

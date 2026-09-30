@@ -1,8 +1,8 @@
 package com.github.regyl.unfriendlyjarvis.controller.dto.oauth.github;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import tools.jackson.databind.PropertyNamingStrategies;
+import tools.jackson.databind.annotation.JsonDeserialize;
+import tools.jackson.databind.annotation.JsonNaming;
 import com.github.regyl.unfriendlyjarvis.service.impl.deserializer.ScopeCollectionDeserializer;
 import com.github.regyl.unfriendlyjarvis.enumeration.Scope;
 import lombok.AllArgsConstructor;
@@ -29,4 +29,10 @@ public class AccessTokenResponseDto {
 
     @JsonDeserialize(using = ScopeCollectionDeserializer.class)
     private Collection<Scope> scope;
+
+    private String error;
+
+    private String errorDescription;
+
+    private String errorUri;
 }

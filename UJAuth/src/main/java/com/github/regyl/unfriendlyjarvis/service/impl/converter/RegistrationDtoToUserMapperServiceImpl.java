@@ -23,14 +23,14 @@ public class RegistrationDtoToUserMapperServiceImpl implements Function<Registra
 
     @Override
     public UserEntity apply(RegistrationDto dto) {
-        if ( dto == null ) {
+        if (dto == null) {
             return null;
         }
 
         UserEntity.UserEntityBuilder user = UserEntity.builder();
 
-        user.login( dto.getLogin() );
-        user.email( dto.getEmail() );
+        user.login(dto.getLogin());
+        user.email(dto.getEmail());
         user.accountNonLocked(true);
 
         String pwd = dto.getPassword();

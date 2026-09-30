@@ -49,23 +49,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             String jwt = getJwtFromRequest(request);
             
-            if (StringUtils.hasText(jwt) && jwtTokenReader.validateToken(jwt)) {
-                // Only process access tokens in authentication filter
-                if (jwtTokenReader.isAccessToken(jwt)) {
-                    String username = jwtTokenReader.getUsernameFromToken(jwt);
-                    
-                    // Extract authorities from token
-                    List<SimpleGrantedAuthority> authorities = extractAuthorities(jwt);
-                    
-                    UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(
-                                    username,
-                                    null,
-                                    authorities);
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
+            if (StringUtils.hasText(jwt) && jwtTokenReader.validateToken(jwt) && jwtTokenReader.isAccessToken(jwt)) {
+                String username = jwtTokenReader.getUsernameFromToken(jwt);
+
+                // Extract authorities from token
+                List<SimpleGrantedAuthority> authorities = extractAuthorities(jwt);
+
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                username,
+                                null,
+                                authorities);
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
             log.error("Cannot set user authentication: {}", e.getMessage());

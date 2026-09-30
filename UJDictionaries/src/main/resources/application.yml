@@ -1,0 +1,11 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uj
+    username: idk_user
+    password: SomeUselessPassword02
+  cloud:
+    config:
+      enabled: false

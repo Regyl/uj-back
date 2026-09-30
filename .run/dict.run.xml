@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dict" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="uj-dictionaries" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.regyl.unfriendlyjarvis.ujdictionaries.UjDictionariesApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

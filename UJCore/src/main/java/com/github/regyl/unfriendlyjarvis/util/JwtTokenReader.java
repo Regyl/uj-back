@@ -1,12 +1,17 @@
 package com.github.regyl.unfriendlyjarvis.util;
 
 import com.github.regyl.unfriendlyjarvis.configuration.security.JwtProperties;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -107,7 +112,7 @@ public class JwtTokenReader {
     public List<String> getAuthoritiesFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
         String authorities = claims.get(AUTHORITIES_KEY, String.class);
-        if (authorities == null || authorities.isEmpty()) {
+        if (!StringUtils.hasLength(authorities)) {
             return Collections.emptyList();
         }
         return Arrays.asList(authorities.split(","));

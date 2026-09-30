@@ -9,5 +9,4 @@ public class UjDictionariesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UjDictionariesApplication.class, args);
 	}
-
 }

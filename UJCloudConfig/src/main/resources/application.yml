@@ -1,0 +1,21 @@
+application:
+    development:
+        critical-beans: requestMappingHandlerAdapter,requestMappingHandlerMapping,jmxMBeanExporter
+        enabled: true
+eureka:
+    client:
+        fetch-registry: false
+        register-with-eureka: false
+        service-url:
+            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    dashboard:
+        path: /dashboard
+    instance:
+        appname: eureka-server
+        hostname: localhost
+server:
+    port: 8761
+spring:
+    cloud:
+        config:
+            enabled: false

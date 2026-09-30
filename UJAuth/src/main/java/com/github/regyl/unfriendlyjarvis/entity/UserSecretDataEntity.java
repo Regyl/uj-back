@@ -1,7 +1,15 @@
 package com.github.regyl.unfriendlyjarvis.entity;
 
 import com.github.regyl.unfriendlyjarvis.enumeration.UserSecretKey;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +26,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "e_user_secret_data", 
-       uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "key"}))
+@Table(
+        name = "e_user_secret_data",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "key"})
+)
 @EqualsAndHashCode(callSuper = true)
 public class UserSecretDataEntity extends AbstractEntity {
     
